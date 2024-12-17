@@ -24,11 +24,12 @@ public class HistoricoInteracaoService {
 		return historicoInteracaoRepository.save(historico);
 	}
 	
-	public String deletar(Long id) {
+	public void deletar(Long id) {
 	    if (historicoInteracaoRepository.existsById(id)) {
 	        historicoInteracaoRepository.deleteById(id);
-	        return "Histórico deletado com sucesso";
+	    } else {
+	        throw new RuntimeException("Histórico não encontrado para exclusão."); // Lança exceção
 	    }
-	    return "Histórico não encontrado para exclusão";
 	}
+
 }

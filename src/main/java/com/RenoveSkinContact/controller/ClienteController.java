@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.RenoveSkinContact.entities.Cliente;
 import com.RenoveSkinContact.service.ClienteService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("api/clientes")
 public class ClienteController {
 
@@ -74,6 +77,27 @@ public class ClienteController {
 			return ResponseEntity.ok(mensagem);
 		}
 		return ResponseEntity.status(404).body("Cliente com ID " + id + " não foi encontrado!");
+	}
+	
+	@GetMapping("/para-contato")
+	public ResponseEntity<List<Cliente>> clientesParaContato() {
+	    List<Cliente> clientes = clienteService.buscarClientesParaContato();
+	    return ResponseEntity.ok(clientes);
+	}
+	
+	
+	// Método para atualizar apenas o status
+	@PutMapping("/{id}/status")
+	public ResponseEntity<Void> atualizarStatus(@PathVariable Long id, @RequestParam boolean ativo) {
+	    clienteService.atualizarStatus(id, ativo);
+	    return ResponseEntity.ok().build();
+	}
+	
+	// Buscar cliente pelo nome
+	@GetMapping("/buscar")
+	public ResponseEntity<List<Cliente>> buscarClientesPorNome(@RequestParam String nome) {
+	    List<Cliente> clientes = clienteService.buscarPorNome(nome);
+	    return ResponseEntity.ok(clientes);
 	}
 
 }

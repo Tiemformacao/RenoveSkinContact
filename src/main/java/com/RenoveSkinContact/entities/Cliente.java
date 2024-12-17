@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,8 @@ public class Cliente {
 	private Long id;
 	private String nome;
 	private String cidade;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataCompra;
 	private boolean ativo = true;
 	

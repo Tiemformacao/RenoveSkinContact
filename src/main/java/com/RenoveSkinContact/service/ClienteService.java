@@ -1,7 +1,10 @@
 package com.RenoveSkinContact.service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,5 +67,52 @@ public class ClienteService {
 		}
 		return "Cliente não encontrado para exclusão!";
 	}
+	
+	
+//	public List<Cliente> buscarClientesParaContato() {
+//	    LocalDate hoje = LocalDate.now();
+//	    return clienteRepository.findAll().stream()
+//	        .filter(cliente -> {
+//	            LocalDate dataCompra = cliente.getDataCompra();
+//	            if (dataCompra != null) {
+//	                long mesesDesdeCompra = ChronoUnit.MONTHS.between(dataCompra, hoje);
+//	                return mesesDesdeCompra > 0 && mesesDesdeCompra % 3 == 0;
+//	            }
+//	            return false;
+//	        })
+//	        .collect(Collectors.toList());
+//	}
+	
+	
+	public List<Cliente> buscarClientesParaContato() {
+	    LocalDate hoje = LocalDate.now();
+	    return clienteRepository.findAll().stream()
+	        .filter(cliente -> cliente.isAtivo()) // Adiciona o filtro para clientes ativos
+	        .filter(cliente -> {
+	            LocalDate dataCompra = cliente.getDataCompra();
+	            if (dataCompra != null) {
+	                long mesesDesdeCompra = ChronoUnit.MONTHS.between(dataCompra, hoje);
+	                return mesesDesdeCompra > 0 && mesesDesdeCompra % 3 == 0;
+	            }
+	            return false;
+	        })
+	        .collect(Collectors.toList());
+	}
+
+	
+	
+	// Método para atualizar apenas o status
+	public void atualizarStatus(Long id, boolean ativo) {
+	    Cliente cliente = clienteRepository.findById(id)
+	        .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+	    cliente.setAtivo(ativo);
+	    clienteRepository.save(cliente);
+	}
+	
+	// Busca cliente por nome
+	public List<Cliente> buscarPorNome(String nome) {
+	    return clienteRepository.findByNomeContainingIgnoreCase(nome);
+	}
+
 
 }
