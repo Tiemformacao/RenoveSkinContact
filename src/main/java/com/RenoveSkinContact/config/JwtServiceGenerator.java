@@ -1,4 +1,4 @@
-package config;
+package com.RenoveSkinContact.config;
 
 //JwtService.java
 
@@ -11,7 +11,8 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import auth.Usuario;
+import com.RenoveSkinContact.auth.Usuario;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -28,7 +29,9 @@ public class JwtServiceGenerator {
       extraClaims.put("username", userDetails.getUsername());
       extraClaims.put("id", userDetails.getId().toString());
       extraClaims.put("role", userDetails.getRole());
-      extraClaims.put("outracoisa", "teste");
+    //extraClaims.put("outracoisa", "teste");
+    //extraClaims.put("outracoisa", "teste");
+    //extraClaims.put("outracoisa", "teste");
 	  
       
       return Jwts

@@ -1,4 +1,4 @@
-package config;
+package com.RenoveSkinContact.config;
 
 import java.util.Arrays;
 
@@ -32,18 +32,16 @@ public class SecurityConfig  {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http   
-		.csrf(csrf -> csrf.disable())
+		http    
 		.csrf(AbstractHttpConfigurer::disable)
 		.cors(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/api/login").permitAll() // Podemos acessar sem autenticação;
-				.requestMatchers("/api/register").permitAll() // Podemos acessar sem autenticação;
+				.requestMatchers("/api/login").permitAll() // Público, acessado sem autenticação;
+				.requestMatchers("/api/register").permitAll()
 				.anyRequest().authenticated())
 		.authenticationProvider(authenticationProvider)
 		.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 		.sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		
 
 		return http.build();
 	}

@@ -1,6 +1,6 @@
-package auth;
+package com.RenoveSkinContact.auth;
 
-// É como se fosse uma DTO;
+// É basicamente uma DTO;
 public class Login {
 
 	private String username;
@@ -18,6 +18,7 @@ public class Login {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	
 	
 	

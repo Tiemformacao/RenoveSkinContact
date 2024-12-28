@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.0</version>
+		<version>3.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.RenoveSkinContact</groupId>
@@ -56,13 +56,14 @@
 			<scope>test</scope>
 		</dependency>
 		
-        <!--DEPENDÊNCIA SPRING SECURITY-->
+<!--    DEPENDÊNCIA SPRING SECURITY-->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
 		
-		<!--DEPENDÊNCIAS JWT(TOKEN)-->
+<!--    DEPENDÊNCIAS JWT(TOKEN)-->
 		<dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -91,7 +92,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 

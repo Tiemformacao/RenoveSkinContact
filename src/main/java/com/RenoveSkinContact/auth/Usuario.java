@@ -1,4 +1,4 @@
-package auth;
+package com.RenoveSkinContact.auth;
 
 
 import java.util.ArrayList;
@@ -14,14 +14,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-// A interface UserDetails é do Spring Security;
-// O Spring Security entende as palavras 'username' e 'password';
 @Entity
 public class Usuario implements UserDetails{
 	
 	//private static final long serialVersionUID = 1L;
-	
 	private static final long serialVersionUID = 1L;
+	
+	// O Spring Security entende as palavras 'username' e 'password';
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,34 +38,42 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public String getPassword() {
+		// TODO Auto-generated method stub
 		return password;
 	}
 
 	@Override
 	public String getUsername() {
+		// TODO Auto-generated method stub
 		return username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
+	
+	
 	
 	public Long getId() {
 		return id;

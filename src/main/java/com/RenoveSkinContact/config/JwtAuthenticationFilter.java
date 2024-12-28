@@ -1,4 +1,4 @@
-package config;
+package com.RenoveSkinContact.config;
 
 //JwtAuthenticationFilter.java
 

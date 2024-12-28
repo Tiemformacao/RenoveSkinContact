@@ -1,4 +1,4 @@
-package auth;
+package com.RenoveSkinContact.auth;
 
 import java.util.Optional;
 
